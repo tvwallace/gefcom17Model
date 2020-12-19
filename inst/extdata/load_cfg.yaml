@@ -1,0 +1,76 @@
+# Load modelling config file
+
+tstRunNum: 99
+writeFiles: 1 
+doInt:  1  # convert interaction factors to ints 
+doImp:  1  # generate feature importances
+doTest: 0  # generate test predictions 
+
+# 10 here, 100 for weather.  Reason is I found some
+# success using predictions arising from 05th/95th 
+# temperature quantiles as 10th/90th load predictions
+num_quants: 10 #how many quantiles
+
+zones: ['WCMA'] # use this to run on 1 zone, for ease of testing
+#zones: ['NH', 'CT'] # example of running on 2 zones
+#zones: 'all' # all 9 zones
+
+# For reproducibility.  If negative, no seed is set. I
+# like to run without setting the seed to remind me
+# of the variance inherent in these models.
+rnd_seed: 1234
+
+# For out-of-sample predictions, will have more data
+tstRndMult: 1.08
+
+# Variables to use for modelling mean temperature
+ld_mn_tgt: 'rt_dem'
+ld_mn_pred: ['hour', 'dow', 'tc', 'month', 'Date']
+
+# Date might help a little, but it's redundant with other vars
+rem_cols: ['rt_dem', 'Date']
+
+# xgboost parameters for predicting mean of temps
+obj: 'reg:squarederror'
+bster: 'gbtree'
+nrnd_def: 200  # default number of boosting iterations
+eta: 0.02 # learning rate
+mxdpth: 5 # max depth of a tree
+subsamp: 0.9 # subsample ratio of training data
+colsamp: 0.8 # subsample ratio of columns
+minchwt: 1 # minimum child weight
+# esr: 25 # early stopping rounds, couldn't get this to work
+prnt_n: 25
+verb: 1
+
+# For load, having different boosting iterations by zone helped
+nrnd_nh: 260
+nrnd_me: 240
+nrnd_vt: 140 
+nrnd_ct: 130 
+nrnd_ri: 220 
+nrnd_sema: 160 
+nrnd_wcma: 125
+nrnd_nema: 320 
+nrnd_iso: 195
+
+# xgboost parameters for predicting variance of temps
+nrnd_defv: 35  # default number of boosting iterations
+eta_v: 0.02 # learning rate
+mxdpthv: 3 # max depth of a tree
+subsampv: 0.9 # subsample ratio of training data
+colsampv: 0.8 # subsample ratio of columns
+minchwtv: 1 # minimum child weight
+
+# Setting different boosting iterations by zone didn't help
+# so much with variance modelling, but setup to handle
+nrnd_nhv: 25
+nrnd_mev: 25 
+nrnd_vtv: 25 
+nrnd_ctv: 25 
+nrnd_riv: 25 
+nrnd_semav: 25 
+nrnd_wcmav: 15
+nrnd_nemav: 25 
+nrnd_isov: 25
+

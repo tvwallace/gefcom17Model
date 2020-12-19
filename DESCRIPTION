@@ -1,16 +1,28 @@
 Package: gefcom17Model
-Title: What the Package Does (One Line, Title Case)
+Title: Code used to compete in Gefcom 17
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "TV",
+           family = "Wallace",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "tvwallace@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+Description: This package contains the code I used to compete in Gefcom 17.  
+    The package was made mostly to practice making a package.  Putting
+    what's essentially exploratory data analysis code into a package is
+    contrived.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    data.table,
+    ggplot2,
+    xgboost,
+    Matrix,
+    mboost,
+    readxl,
+    dplyr,
+    yaml,
+    tinytex

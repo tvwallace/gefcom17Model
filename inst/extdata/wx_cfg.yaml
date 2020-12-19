@@ -1,0 +1,111 @@
+# temperature modelling config file
+
+writeFiles: 1 # write out temperature quantile files
+doInt:  1  # convert interaction factors to ints 
+doXGB:  1  # use xgboost to model mean and variance of temps
+doGam:  1  # use gamboost to do same
+doImp:  1  # generate feature importances
+doTest: 0  # generate test predictions 
+num_quants: 100 #how many quantiles
+zones: ['WCMA'] # use this to run on 1 zone, for ease of testing
+#zones: ['NH', 'CT'] # example of running on 2 zones
+#zones: 'all' # all 9 zones
+
+# For reproducibility.  If <= 0, no seed is set. I
+# like to run without setting the seed to remind me
+# of the variance inherent in these models.
+rnd_seed: 1234
+
+# For out-of-sample predictions, will have more data
+tstRndMult: 1.08
+
+# Variables to use for modelling mean temperature
+
+wx_mn_tgt: 'tc'
+
+# yrFrac: what percentage of the year has past as of the given hour
+# (hour_right_now)/8760 (8784 fir leap years)
+# yrFrac is added in the modelling code
+wx_mn_pred: ['yrFrac', 'hour']
+
+# Specify amount of data in years you will use.  50 == all
+n_yrs_data: 50
+
+# xgboost parameters for predicting mean of temps
+obj: 'reg:squarederror'
+bster: 'gbtree'
+nrnd_def: 300  # default number of boosting iterations
+eta: 0.05 # learning rate
+mxdpth: 5 # max depth of a tree
+subsamp: 0.95 # subsample ratio of training data
+colsamp: 1 # subsample ratio of columns
+minchwt: 1 # minimum child weight
+# esr: 25 # early stopping rounds, couldn't get this to work
+prnt_n: 25
+verb: 1
+
+# For weather, having different boosting iterations by zone helped
+nrnd_nh: 118
+nrnd_me: 93 
+nrnd_vt: 150 
+nrnd_ct: 180 
+nrnd_ri: 130 
+nrnd_sema: 108 
+nrnd_wcma: 30
+nrnd_nema: 80 
+nrnd_iso: 118
+
+# variables for modelling variance of temps
+wx_var_pred: ["yrFrac", "hour"]
+
+# xgboost parameters for predicting variance of temps
+nrnd_defv: 25  # default number of boosting iterations
+eta_v: 0.02 # learning rate
+mxdpthv: 3 # max depth of a tree
+subsampv: 0.95 # subsample ratio of training data
+colsampv: 1 # subsample ratio of columns
+minchwtv: 1 # minimum child weight
+
+# Setting different boosting iterations by zone didn't help
+# so much with variance modelling, but setup to handle
+nrnd_nhv: 25
+nrnd_mev: 25 
+nrnd_vtv: 25 
+nrnd_ctv: 25 
+nrnd_riv: 25 
+nrnd_semav: 25 
+nrnd_wcmav: 25
+nrnd_nemav: 25 
+nrnd_isov: 25
+
+# Gamboost parameters for modelling mean temps
+# TODO: removed hard-codes specification of predictor variables &
+# BBS parameters
+gb_mn_yf_dg:  3
+gb_mn_yf_df:  7
+gb_mn_yf_kt:  12
+gb_mn_yf_dlt: 3
+gb_mn_hr_dg:  3
+gb_mn_hr_df:  7
+gb_mn_hr_kt:  12
+# boost control variables
+gb_mn_stp:  30
+gb_mn_nu:   0.2
+gb_mn_rsk:  'oobag'
+gb_mn_trc:  FALSE
+gb_mn_stpi: FALSE
+gb_mn_cntr: FALSE
+
+# Gamboost for modelling variance
+gb_sd_yf_dg:  4
+gb_sd_yf_df:  4
+gb_sd_yf_kt:  12
+gb_sd_yf_dlt: 2
+# boost control variables
+gb_sd_stp:  20
+gb_sd_nu:   0.2
+gb_sd_rsk: 'oobag'
+gb_sd_trc:  FALSE
+gb_sd_stpi: FALSE
+gb_sd_cntr: FALSE
+

@@ -1,0 +1,59 @@
+# Config file containing general parameters and validation dates
+
+# Source of input data: 
+# https://www.iso-ne.com/isoexpress/web/reports/load-and-demand/-/tree/zone-info
+
+# general parameters
+data_dir: '/home/wally/gefcom17/smd_data'
+res_dir: '/home/wally/gefcom17/res'
+temp_dir: '/home/wally/gefcom17/temps'
+sub_dir: '/home/wally/gefcom17/subs'
+
+# output file for read data; input file for clean data
+infile:    'YzonalDataNov20.RDS'
+
+# Note: some variables are added in the modelling scripts
+# please see that code for details
+outfile:   'YclnNov20.RDS'
+
+# holiday dates. Holidays matter a lot for power consumption
+holsfile:   'hols03.csv'
+
+# dstDates
+dstDatesFile: 'dstDates03-25.csv'
+
+zoneNamesFile: 'isone_zones.csv'
+
+# remove unneeded variables
+notneedfile: 'vars_not_needed.csv'
+
+# Will generally model load after weather with same data, validation date.
+# So make commod configuration file.
+
+# valdation period dates: start, end, last date of training data
+# could probably be done more concisely
+val_dts:
+  strt: ['2017-02-28', '2018-02-28', '2019-02-28']
+  end:  ['2017-04-01', '2018-04-01', '2019-04-01']
+  lst:  ['2017-02-15', '2018-02-15', '2019-02-15'] #last day of trng data
+  
+tst_dts:
+  strt: ['2013-12-31']
+  end:  ['2014-02-01']
+  lst:  ['2013-12-15']
+
+# months to use for training/testing.  Above sets March 
+# as the month to be predicted.  The commented code
+# below shows how to train with data from Nov-May, Dec-Apr, etc
+# mth_data_beg: [11, 12,  1, 3]
+# mth_data_end: [ 5,  4, 12, 3]
+# Note: only the weather modelling code allows you to iterate
+# The load modeling code expects the specfication to be a single
+# month range, as below.
+mth_data_beg: [10]
+mth_data_end: [4]
+
+# Specify amount of data in years you will use.  50 == all
+n_yrs_data: 50
+
+
