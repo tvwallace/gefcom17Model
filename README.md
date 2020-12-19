@@ -44,7 +44,7 @@ From those predictions I estimated quantiles of temperature, e.g for the
 
 <img src=https://private.codecogs.com/png.download?q90_%7Btemp%7D%20%3D%20%5Chat%7Bmu_%7Btemp%7D%7D%20+%20qnorm%280.90%29*%5Chat%7B%5Csigma_%7Btemp%7D%7D>
 
-\(q90 = \hat{mu} + qnorm(0.90)*\hat{sigma}\)
+![equation](https://latex.codecogs.com/gif.latex?q90_%7Btemp%7D%20%3D%20%5Chat%7Bmu_%7Btemp%7D%7D%20+%20qnorm%280.90%29*%5Chat%7B%5Csigma_%7Btemp%7D%7D)
 
 This methodology assumes that conditional mean and conditional median
 are the same. I did not check this assumption. It may be true for
