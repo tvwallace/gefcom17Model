@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' get_isone_smd_data(2016, 2018, '/home/frodo/isone/smd_data')
+#' get_isone_smd_data(2016, 2018, '~/gefcom17/smd_data')
 #' }
 
 get_isone_smd_data<-function(minYr = 2016, maxYr = year(Sys.Date()), data_dir = '')
