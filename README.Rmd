@@ -46,7 +46,8 @@ From those predictions I estimated quantiles of temperature, e.g for the 90th qu
    
 ![equation](https://latex.codecogs.com/gif.latex?q90_%7Btemp%7D%20%3D%20%5Chat%7Bmu_%7Btemp%7D%7D%20&plus;%20qnorm%280.90%29*%5Chat%7B%5Csigma_%7Btemp%7D%7D)
    
-This methodology assumes that conditional mean and conditional median are the same.  I did not check this assumption.  It may be true for temperature; it almost certainly isn't for load.
+This methodology assumes that conditional mean and conditional median are the same.  More generally, it assumes temperature is normally-distributed. I did not check these assumptions, primarily I was concerned with getting some measurement of dispersion.  These assumptions may be valid for temperature; they almost certainly aren't for load.   
+
 
 I modeled temperature using xgboost and gamboost.  For a still unknown reason I got slightly better validation results using gamboost.
 
