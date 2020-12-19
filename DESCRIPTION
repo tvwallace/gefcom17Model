@@ -26,3 +26,5 @@ Imports:
     dplyr,
     yaml,
     tinytex
+URL: https://github.com/tvwallace/gefcom17Model
+BugReports: https://github.com/tvwallace/gefcom17Model/issues
