@@ -16,7 +16,7 @@ concerning the contest may be found at:
 <http://www.drhongtao.com/gefcom/2017>
 
 Competing under the nom de plume ‘ch46’, I finished 10th out of about 70
-academic and company teams enrolled.
+academic and company teams.
 
 The requirement of this contest was to produce estimated quantiles of
 electricity demand for the eight load zones in ISO New England (ISONE),
@@ -27,22 +27,20 @@ supplement it. I chose not to, competing in the defined track.
 
 The evaluation metric was the so-called pinball loss, averaged over all
 quantiles. It is defined below, where
-<img src=https://private.codecogs.com/png.download?%5Ctau> is the target
+![equation](https://latex.codecogs.com/gif.latex?%5Ctau) is the target
 quantile:
 
-<img src =https://private.codecogs.com/png.download?%5Cbegin%7Bmultiline%7D%20%5Cbegin%7Baligned%7D%20F_%7B%5Ctau%7D%28y%2C%5Chat%7By%7D%29%20%3D%20%26%5Chspace%7B.1cm%7D%28y%20-%20%5Chat%7By%7D%29%20%5Ctau%20%5Chspace%7B1cm%7D%20%5Ctextrm%7B%20if%20%7D%20y%20%5Cgeq%20%5Chat%7By%7D%5C%5C%5C%20%3D%20%26%5Chspace%7B.1cm%7D%28%5Chat%7By%7D%20-%20y%29%20%281%20-%20%5Ctau%29%20%5Ctextrm%7B%20if%20%7D%20%5Chat%7By%7D%20%3E%20y%20%5Cend%7Baligned%7D%20%5Cend%7Bmultiline%7D>
+![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Baligned%7D%20F_%7B%5Ctau%7D%28y%2C%5Chat%7By%7D%29%20%26%20%3D%20%28y%20-%20%5Chat%7By%7D%29%20%5Ctau%20%5Chspace%7B1cm%7D%5Ctextrm%7B%20if%20%7D%20y%20%5Cgeq%20%5Chat%7By%7D%20%5C%5C%5C%20%26%20%3D%20%28%5Chat%7By%7D%20-%20y%29%20%281%20-%20%5Ctau%29%20%5Ctextrm%7B%20if%20%7D%20%5Chat%7By%7D%20%3E%20y%20%5Cend%7Baligned%7D)
 
 Accurate temperature estimates are a requirement for accurate load
 estimates. I estimated temperature quantiles by estimating mean and
 variance of temperature, where variance was the squared residuals of the
 mean prediction:
 
-<img src=https://private.codecogs.com/png.download?%5Csigma_%7Btemp%7D%5E%7B2%7D%20%3D%20%28temp%20-%20%5Chat%7Btemp%7D%29%5E%7B2%7D>
+![equation](https://latex.codecogs.com/gif.latex?%5Csigma_%7Btemp%7D%5E%7B2%7D%20%3D%20%28temp%20-%20%5Chat%7Btemp%7D%29%5E%7B2%7D)
 
 From those predictions I estimated quantiles of temperature, e.g for the
 90th quantile:
-
-<img src=https://private.codecogs.com/png.download?q90_%7Btemp%7D%20%3D%20%5Chat%7Bmu_%7Btemp%7D%7D%20+%20qnorm%280.90%29*%5Chat%7B%5Csigma_%7Btemp%7D%7D>
 
 ![equation](https://latex.codecogs.com/gif.latex?q90_%7Btemp%7D%20%3D%20%5Chat%7Bmu_%7Btemp%7D%7D%20+%20qnorm%280.90%29*%5Chat%7B%5Csigma_%7Btemp%7D%7D)
 
