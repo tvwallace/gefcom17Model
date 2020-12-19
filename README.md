@@ -60,8 +60,9 @@ load quantiles. That model is specified as ‘gt’ in the source code.
 
 I spent many hours trying to find explanatory variables, mostly
 interaction terms, that would enhance performance. In the end both the
-temperature and load models contained a modest number of variables. That
-specification may be found in the yaml configuration files in extdata.
+temperature and load models contained a modest number of variables.
+Those specifications may be found in the yaml configuration files in
+extdata (inst/extdata).
 
 ## Installation
 
