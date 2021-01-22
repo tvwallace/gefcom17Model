@@ -67,7 +67,7 @@ extdata (inst/extdata).
 ## Installation
 
 ``` r
-devtools::install_github('gefcom17model')
+devtools::install_github('tvwallace/gefcom17model')
 ```
 
 ## Example
